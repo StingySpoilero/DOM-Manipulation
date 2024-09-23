@@ -90,25 +90,27 @@ topMenuEl.addEventListener('click', function(event) {
     event.preventDefault();
     if (event.target.tagName !== 'A') return; 
 
+    // Log the link text
     let clickedLink = event.target;
-    console.log(clickedLink.textContent); // Log the link text
+    console.log(clickedLink.textContent); 
 
-    // Toggling the active class
+    
     topMenuLinks.forEach(link => link.classList.remove('active'));
     clickedLink.classList.add('active');
 
-    // Toggling the submenu
+   // Hide submenu for non-subLink items
     let linkObject = menuLinks.find(link => link.text.toLowerCase() === clickedLink.textContent.toLowerCase());
     if (!linkObject || !linkObject.subLinks) {
-        subMenuEl.style.top = '0'; // Hide submenu for non-subLink items
+        subMenuEl.style.top = '0'; 
     } else {
         subMenuEl.style.top = clickedLink.classList.contains('active') ? '100%' : '0';
         buildSubmenu(linkObject.subLinks);
     }
 });
 
+// Clear current submenu
 function buildSubmenu(subLinks) {
-   subMenuEl.innerHTML = ''; // Clear current submenu
+   subMenuEl.innerHTML = ''; 
    subLinks.forEach(link => {
        let anchorEl = document.createElement('a');
        anchorEl.setAttribute('href', link.href);
@@ -120,12 +122,13 @@ function buildSubmenu(subLinks) {
 subMenuEl.addEventListener('click', function(event) {
     event.preventDefault();
     if (event.target.tagName !== 'A') return; 
-
+ 
+    // Clear active from top menu
     let clickedSubLink = event.target;
-    console.log(clickedSubLink.textContent); // Log the link text
-    subMenuEl.style.top = '0'; // Hide the submenu
-    topMenuLinks.forEach(link => link.classList.remove('active')); // Clear active from top menu
+    console.log(clickedSubLink.textContent);
+    subMenuEl.style.top = '0';
+    topMenuLinks.forEach(link => link.classList.remove('active'));
 
     // Update mainEl content
-    mainEl.innerHTML = `<h1>clickedSubLink.textContent</h1>`;
+    mainEl.innerHTML = `<h1>Information being looked for</h1>`;
 });
