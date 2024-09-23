@@ -49,3 +49,11 @@ newLink.textContent = Link.text;
 // Append the new element to the topMenuEl element.
 topMenuEl.appendChild(newLink)
 })
+// Adding a Menu Bar
+// Menu Data Structure
+menuLinks.forEach(link => {
+    let anchorEl = document.createElement('a');
+    anchorEl.setAttribute('href', link.href);
+    anchorEl.textContent = link.text;
+    topMenuEl.appendChild(anchorEl);
+})
